@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReAct AI Agent 演示系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <h1>🤖 ReAct AI Agent 演示系统</h1>
+            <p class="subtitle">基于通义千问的智能代理，支持工具调用与实时推理</p>
+        </header>
+
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 左侧：聊天区域 -->
+            <div class="chat-section">
+                <div class="chat-container">
+                    <div id="chat-messages" class="chat-messages">
+                        <div class="welcome-message">
+                            <h3>👋 欢迎使用 ReAct AI Agent</h3>
+                            <p>我可以帮你完成各种任务，例如：</p>
+                            <ul>
+                                <li>📊 数学计算与数据分析</li>
+                                <li>🌤️ 查询天气信息</li>
+                                <li>📝 读写文件（JSON/文本）</li>
+                                <li>🎲 生成随机数</li>
+                                <li>⏰ 获取当前时间</li>
+                            </ul>
+                            <p><strong>提示：</strong>开启"调试模式"可以看到我的思考过程！</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 输入区域 -->
+                    <div class="input-area">
+                        <textarea 
+                            id="user-input" 
+                            placeholder="输入你的指令...（例如：计算 (85+90)/2 的平均值）"
+                            rows="3"
+                        ></textarea>
+                        <div class="input-controls">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="debug-mode" checked>
+                                <span>🔍 调试模式（显示思考过程）</span>
+                            </label>
+                            <button id="send-btn" class="btn btn-primary">
+                                <span>发送</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：工具栏 -->
+            <div class="sidebar">
+                <!-- 快捷操作 -->
+                <div class="panel">
+                    <h3>⚡ 快捷指令</h3>
+                    <div class="quick-actions">
+                        <button class="btn btn-secondary quick-btn" data-message="查询北京今天的天气">
+                            🌤️ 查询天气
+                        </button>
+                        <button class="btn btn-secondary quick-btn" data-message="计算 sin(pi/4) + cos(pi/4) 的值">
+                            🔢 数学计算
+                        </button>
+                        <button class="btn btn-secondary quick-btn" data-message="生成5个1到100之间的随机整数">
+                            🎲 随机数生成
+                        </button>
+                        <button class="btn btn-secondary quick-btn" data-message="获取当前时间和日期">
+                            ⏰ 当前时间
+                        </button>
+                        <button class="btn btn-secondary quick-btn" data-message="列出工作区的所有文件">
+                            📁 查看文件
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 工作区文件 -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>📂 工作区文件</h3>
+                        <button id="refresh-files" class="btn btn-small">刷新</button>
+                    </div>
+                    <div id="file-list" class="file-list">
+                        <p class="empty-text">暂无文件</p>
+                    </div>
+                    <button id="clear-workspace" class="btn btn-danger btn-full">
+                        🗑️ 清空工作区
+                    </button>
+                </div>
+
+                <!-- 可用工具列表 -->
+                <div class="panel">
+                    <h3>🛠️ 可用工具</h3>
+                    <div class="tools-list">
+                        <div class="tool-item">
+                            <span class="tool-name">calculator</span>
+                            <span class="tool-desc">数学计算</span>
+                        </div>
+                        <div class="tool-item">
+                            <span class="tool-name">get_weather</span>
+                            <span class="tool-desc">天气查询</span>
+                        </div>
+                        <div class="tool-item">
+                            <span class="tool-name">read/write_file</span>
+                            <span class="tool-desc">文件读写</span>
+                        </div>
+                        <div class="tool-item">
+                            <span class="tool-name">read/write_json</span>
+                            <span class="tool-desc">JSON处理</span>
+                        </div>
+                        <div class="tool-item">
+                            <span class="tool-name">generate_random</span>
+                            <span class="tool-desc">随机数生成</span>
+                        </div>
+                        <div class="tool-item">
+                            <span class="tool-name">get_current_time</span>
+                            <span class="tool-desc">时间查询</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

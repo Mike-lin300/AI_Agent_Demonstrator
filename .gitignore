@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+
+# Environment variables
+.env
+.env.local
+*.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Agent workspace (保留演示文件)
+# agent_workspace/
+
+# Test files (暂时保留)
+# test_weather.py
+# weather_test.py
+
+# Archive (optional)
+20260611演示存档/
