@@ -14,7 +14,7 @@ def get_agent():
     """获取或创建Agent实例"""
     global agent
     if agent is None:
-        api_key = os.environ.get('DASHSCOPE_API_KEY', 'sk-3c3fbeb1b58e4bf7b0ed56c430ef5e5d')
+        api_key = os.environ.get('DASHSCOPE_API_KEY')
         agent = SimpleAgent(
             api_key=api_key,
             base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
